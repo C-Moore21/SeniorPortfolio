@@ -1,0 +1,9 @@
+/0:0:0:0:0:0:0:1 Tue, 10 Apr 2018 16:47:23 GMT GET / HTTP/1.1 200 OK 465
+/0:0:0:0:0:0:0:1 Tue, 10 Apr 2018 16:47:23 GMT GET /static/custom.css HTTP/1.1 200 OK 263
+/0:0:0:0:0:0:0:1 Tue, 10 Apr 2018 16:47:23 GMT GET /static/Grateful_Dead_(1970).png HTTP/1.1 200 OK 765121
+/0:0:0:0:0:0:0:1 Tue, 10 Apr 2018 16:47:23 GMT GET /static/bear.gif HTTP/1.1 200 OK 889555
+/0:0:0:0:0:0:0:1 Tue, 10 Apr 2018 16:47:23 GMT GET /static/74273862.jpg HTTP/1.1 200 OK 3062564
+/0:0:0:0:0:0:0:1 Tue, 10 Apr 2018 16:47:23 GMT GET /favicon.ico HTTP/1.1 404 Not Found 83
+/0:0:0:0:0:0:0:1 Tue, 10 Apr 2018 16:47:23 GMT GET /favicon.ico HTTP/1.1 404 Not Found 83
+/0:0:0:0:0:0:0:1 Tue, 10 Apr 2018 16:47:29 GMT GET /static/74273862.jpg HTTP/1.1 200 OK 3062564
+/0:0:0:0:0:0:0:1 Tue, 10 Apr 2018 16:47:57 GMT GET /Users/camdenm/school/compsci/networking/homework4/website//static/74273862.jpg HTTP/1.1 200 OK 3062564
