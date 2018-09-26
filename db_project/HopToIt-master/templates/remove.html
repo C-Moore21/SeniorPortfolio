@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+  <!-- <link type="text/css" rel="stylesheet" href="style.css"/> -->
+</head>
+<body>
+  <div class="header" style="margin: 0 auto;">
+    <form action="/admin/insert/">
+      <button class="add_button hidden">+</button>
+    </form>
+    <form action="/admin/remove/">
+      <button class="remove_button_admin hidden">-</button>
+    </form>
+    <a href="/home/">
+      <img class="logo" src='/static/images/hop_to_it_new_logo.png' width="300" height=auto>
+    </a>
+    <form method="POST" action="/search/">
+      <input name="text" placeholder="Search.." class="search_bar">
+    </form>
+    <img class="admin_button" src='/static/images/hops.png' onclick="show()">
+  </div>
+  <div>
+    <h1 align='center'>"Beer is living proof that God loves us and wants us to be happy!"</h1>
+  </div>
+  <div class="topnav">
+    <a href="/home/">Home</a>
+    <a href="/breweries/">Breweries</a>
+    <a href="/beers/">Beers</a>
+    <a href="/bars/">Bars</a>
+    <a href="/mission/">Mission</a>
+    <a href="/about/">About</a>
+  </div>
+  <h1 class="remove_button">Choose to remove</h1>
+
+  <div class="remove_button show">
+    <img src="/static/images/bar_before.png" class="remove_button show" id="bar_before" onclick="remove('bar_remove_form')">
+    <img src="/static/images/beer_before.png" class="remove_button show" id="beer_before" onclick="remove('beer_remove_form')">
+    <img src="/static/images/beer_food_before.png"  class="remove_button show"id="beer_food_before" onclick="remove('beer_food_remove_form')">
+    <img src="/static/images/brewery_before.png" class="remove_button show" id="brewery_before" onclick="remove('brewery_remove_form')">
+  </div>
+
+  <div style="padding: 20px;">
+    <h2 class="brewery_remove_form hidden">Choose brewery to remove</h2>
+    <form action="/admin/remove/brewery" method=post class="brewery_remove_form hidden">
+        {% for b in breweries %}
+        <input type="radio" name="brewery_id" value="{{b.brewery_id}}"> {{b.name}}<br>
+       {% endfor %}
+      </select>
+      <br>
+      <input type="submit">
+    </form>
+  </div>
+
+  <div style="padding: 20px;">
+    <h2 class="bar_remove_form hidden">Choose bar to remove</h2>
+    <form action="/admin/remove/bar" method=post class="bar_remove_form hidden">
+        {% for b in bars %}
+        <input type="radio" name="bar_id" value="{{b.bar_id}}"> {{b.bar_name}}<br>
+       {% endfor %}
+      </select>
+      <br>
+      <input type="submit">
+    </form>
+  </div>
+
+  <div style="padding: 20px;">
+    <h2 class="beer_food_remove_form hidden">Choose food pairing to remove</h2>
+    <form action="/admin/remove/beer_food" method=post class="beer_food_remove_form hidden">
+        {% for b in food_pairings %}
+        <input type="radio" name="food_id" value="{{b.food_id}}"> {{b.food_type}}<br>
+       {% endfor %}
+      </select>
+      <br>
+      <input type="submit">
+    </form>
+  </div>
+
+  <div style="padding: 20px;">
+    <h2 class="beer_remove_form hidden">Choose beer to remove</h2>
+    <form action="/admin/remove/beer" method=post class="beer_remove_form hidden">
+        {% for b in beers %}
+        <input type="radio" name="beer_id" value="{{b.beer_id}}"> {{b.beer_name}}<br>
+       {% endfor %}
+      </select>
+      <br>
+      <input type="submit">
+    </form>
+  </div>
+
+<script>
+function remove(selected_remove) {
+    console.log(selected_remove);
+
+    var remove_buttons = document.getElementsByClassName("remove_button");
+    var i;
+    for (i = 0; i < remove_buttons.length; i++) {
+      var current_button = remove_buttons[i];
+      current_button.classList.remove('show');
+      current_button.classList.add('hidden');
+    }
+
+    var remove_forms = document.getElementsByClassName(selected_remove);
+    var i;
+    for (i = 0; i < remove_forms.length; i++) {
+      var current_form = remove_forms[i];
+      current_form.classList.remove('hidden');
+      current_form.classList.add('show');
+    }
+}
+function show() {
+    if (document.getElementsByClassName("add_button")[0].classList.contains('hidden') == true){
+      document.getElementsByClassName("add_button")[0].classList.remove('hidden');
+      document.getElementsByClassName("add_button")[0].classList.add('show');
+    } else {
+      document.getElementsByClassName("add_button")[0].classList.add('hidden');
+      document.getElementsByClassName("add_button")[0].classList.remove('show');
+    }
+    if (document.getElementsByClassName("remove_button_admin")[0].classList.contains('hidden') == true) {
+      document.getElementsByClassName("remove_button_admin")[0].classList.remove('hidden');
+      document.getElementsByClassName("remove_button_admin")[0].classList.add('show');
+    } else {
+      document.getElementsByClassName("remove_button_admin")[0].classList.add('hidden');
+      document.getElementsByClassName("remove_button_admin")[0].classList.remove('show');
+    }
+  }
+</script>
+
+<style>
+  .add_button {
+    color: #564E4D;
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+    top: 150px;
+    left: 40px;
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+    background-color: white;
+    border: 2px solid #564E4D;
+    font-size: 10px;
+    margin: 15px auto;
+  }
+
+  .add_button:hover, .remove_button_admin:hover {
+    background-color: #32A600;
+    border: 2px solid #32A600;
+    color: white;
+  }
+
+  .remove_button_admin {
+    top: 60px;
+    left: 125px;
+    color: #564E4D;
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+    background-color: white;
+    border: 2px solid #564E4D;
+    font-size: 10px;
+    margin: 15px auto;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .show {
+    display: block;
+  }
+
+  .search_bar {
+    width: 100px;
+    box-sizing: border-box;
+    border: 2px solid #564E4D;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    padding: 12px 20px 12px 40px;
+    margin-left: 15px;
+    position: absolute;
+    top: 100px;
+    right: 10px;
+    width: 300px;
+    border: 3px solid #564E4D;
+  }
+
+  div.header {
+    align-items: center;
+  }
+
+  .logo {
+    display: block;
+    position: static;
+    padding-bottom: 15px;
+    margin: 0 auto;
+  }
+
+  .slogan {
+    display: block;
+    margin: 0 left;
+    position: static;
+    top: 100px;
+  }
+
+  .admin_button {
+    margin-left: 15px;
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    width: 100px;
+    height: auto;
+  }
+
+  .search_bar {
+    width: 100px;
+    box-sizing: border-box;
+    border: 2px solid #564E4D;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    padding: 12px 20px 12px 40px;
+    margin-left: 15px;
+    position: absolute;
+    top: 100px;
+    right: 10px;
+    width: 300px;
+    border: 3px solid #564E4D;
+  }
+
+  .button {
+      background-color: white;
+      color: #564E4D;
+      border: 2px solid #564E4D;
+      font-size: 24px;
+      display: block;
+      margin: 15px auto;
+    }
+
+  .button:hover {
+    background-color: #564E4D;
+    color: white;
+  }
+
+  .topnav {
+    overflow: hidden;
+    background-color: white;
+    position: relative;
+    margin:0 auto;
+    padding: 10px 0;
+    width:100%;
+  }
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #564E4D;
+  font-size: 24px;
+  text-align: center;
+  padding: 5px;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  width:15%;
+}
+
+.topnav a:hover {
+  border-bottom: 3px solid #32A600;
+}
+
+.topnav a.active {
+  border-bottom: 3px solid #564E4D;
+}
+
+h1 {
+  color: #564E4D;
+  font-size: 300%;
+  text-align: center;
+  margin: 50px auto;
+}
+
+.remove_button img{
+  /*background-color: #32A600;*/
+  display: inline-block;
+  height: 300px;
+  width: auto;
+  margin: auto 25px;
+  padding: 45px;
+}
+
+#bar_before:hover{
+  background-color: red;
+}
+
+#beer_before:hover  {
+  background-color: red;
+}
+
+#beer_food_before:hover {
+  background-color: red;
+}
+
+#brewery_before:hover {
+  background-color: red;
+}
+
+.brewery_remove_form, .bar_remove_form, .beer_food_remove_form, .beer_remove_form{
+  display: none;
+  color: #564E4D;
+  font-size: 300%;
+  text-align: center;
+  margin: 50px auto;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #564E4D;
+  border-radius: 15px;
+  box-sizing: border-box;
+}
+
+input[type=text] {
+    border: 2px solid #564E4D;
+    color: #564E4D;
+    font-size: 25px;
+    text-align: center;
+    width: 100%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+input[type=date] {
+    border: 2px solid #564E4D;
+    color: #564E4D;
+    font-size: 25px;
+    text-align: center;
+    width: 100%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+input[type=text]:focus {
+    border-color: #32A600;
+    color: #564E4D;
+    font-size: 25px;
+}
+
+select {
+  font-size: 50px;
+  border-color: #564E4D;
+  color: #564E4D;
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: 4px;
+  background-color: white;
+  text-align-last: center;
+  overflow: scroll;
+}
+
+input[type=submit] {
+    border: 3px solid #564E4D;
+    color: #564E4D;
+    font-size: 50px;
+}
+
+input[type="radio"] {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    display:block;
+    background-color: #32A600;
+}
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+</style>
+
+</body>
+</html>

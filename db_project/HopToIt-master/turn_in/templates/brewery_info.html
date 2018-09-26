@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+  <!-- <link type="text/css" rel="stylesheet" href="style.css"/> -->
+</head>
+<body>
+  <div class="header" style="margin: 0 auto;">
+    <form action="/admin/insert/">
+      <button class="add_button hidden">+</button>
+    </form>
+    <form action="/admin/remove/">
+      <button class="remove_button hidden">-</button>
+    </form>
+    <a href="/home/">
+      <img class="logo" src='/static/images/hop_to_it_new_logo.png' width="300" height=auto>
+    </a>
+    <form method="POST" action="/search/">
+      <input name="text" placeholder="Search.." class="search_bar">
+    </form>
+    <img class="admin_button" src='/static/images/hops.png' onclick="show()">
+  </div>
+  <div>
+    <h2 align='center'>"Beer is living proof that God loves us and wants us to be happy!"</h2>
+  </div>
+   <div class="topnav">
+     <a href="/home/">Home</a>
+     <a href="/breweries/">Breweries</a>
+     <a href="/beers/">Beers</a>
+     <a href="/bars/">Bars</a>
+     <a href="/mission/">Mission</a>
+     <a href="/about/">About</a>
+   </div>
+   <div class="brewery_information">
+     {% for d in data %}
+        <!-- <img class="brewery_photo" src="/static/images/brewery_logo_test.png" alt="Brewery Logo" align="center"> -->
+        <iframe src="http://{{d.website}}"></iframe>
+        <h1 align="center">{{ d.name }}</h1>
+        <h2 align="center">Established: {{ d.date_established }}</h2>
+        <a href=http://{{d.website}}>{{ d.website }}</a>
+        <h2 align="center">History</h2>
+        <h3 align="center">{{ d.history_description }}</h3>
+        <div class="tab">
+          <form action="/beers/{{ d.name }}/" method="get">
+              <button id="beers_list" class="beers_button" onclick="show_beers()">Beers: {{d.beer_count}}</button>
+          </form>
+     {% endfor %}
+   </div>
+
+   <!-- <ul>
+     {% for d in data %}
+    <li>{{ d }}</li>
+    {% endfor %}
+  </ul> -->
+
+ </body>
+ <script>
+   function show_beers(element) {
+     var id = element;
+     document.getElementById(id).style.display = "block";
+  }
+
+  function show() {
+      if (document.getElementsByClassName("add_button")[0].classList.contains('hidden') == true){
+        document.getElementsByClassName("add_button")[0].classList.remove('hidden');
+        document.getElementsByClassName("add_button")[0].classList.add('show');
+      } else {
+        document.getElementsByClassName("add_button")[0].classList.add('hidden');
+        document.getElementsByClassName("add_button")[0].classList.remove('show');
+      }
+      if (document.getElementsByClassName("remove_button")[0].classList.contains('hidden') == true) {
+        document.getElementsByClassName("remove_button")[0].classList.remove('hidden');
+        document.getElementsByClassName("remove_button")[0].classList.add('show');
+      } else {
+        document.getElementsByClassName("remove_button")[0].classList.add('hidden');
+        document.getElementsByClassName("remove_button")[0].classList.remove('show');
+      }
+    }
+ </script>
+<style>
+  .add_button {
+    color: #564E4D;
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+    top: 150px;
+    left: 40px;
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+    background-color: white;
+    border: 2px solid #564E4D;
+    font-size: 10px;
+    margin: 15px auto;
+  }
+
+  .add_button:hover, .remove_button:hover {
+    background-color: #32A600;
+    border: 2px solid #32A600;
+    color: white;
+  }
+
+  .remove_button {
+    top: 60px;
+    left: 125px;
+    color: #564E4D;
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+    background-color: white;
+    border: 2px solid #564E4D;
+    font-size: 10px;
+    margin: 15px auto;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .show {
+    display: block;
+  }
+  div.header {
+    align-items: center;
+  }
+
+  .logo {
+    display: block;
+    position: static;
+    padding-bottom: 15px;
+    margin: 0 auto;
+  }
+
+  .slogan {
+    display: block;
+    margin: 0 auto;
+    position: static;
+    margin: 0 right|center;
+  }
+
+  .admin_button {
+    margin-left: 15px;
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    width: 100px;
+    height: auto;
+  }
+
+  input[name='text'] {
+    width: 100px;
+    box-sizing: border-box;
+    border: 2px solid #564E4D;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    padding: 12px 20px 12px 40px;
+    margin-left: 15px;
+    position: absolute;
+    top: 150px;
+    right: 10px;
+    width: 300px;
+    border: 3px solid #564E4D;
+  }
+
+  .button {
+      background-color: white;
+      color: #564E4D;
+      border: 2px solid #564E4D;
+      font-size: 24px;
+      display: block;
+      margin: 15px auto;
+    }
+
+  .button:hover {
+    background-color: #564E4D;
+    color: white;
+  }
+
+  .topnav {
+    overflow: hidden;
+    background-color: white;
+    position: relative;
+    margin:0 auto;
+    padding: 10px 0;
+    width:100%;
+  }
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #564E4D;
+  font-size: 24px;
+  text-align: center;
+  padding: 5px;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  width:15%;
+}
+
+.topnav a:hover {
+  border-bottom: 3px solid #32A600;
+}
+
+.topnav a.active {
+  border-bottom: 3px solid #564E4D;
+}
+
+  img.brewery_photo {
+      border-radius: 50%;
+      width: 300px;
+      height: auto;
+      margin-top: 25px;
+      position: relative;
+      border: 10px solid #564E4D;
+  }
+
+  iframe  {
+      width: 700px;
+      height: 300px;
+      margin-top: 25px;
+      position: relative;
+      border: 10px solid #564E4D;
+  }
+
+  h1 {
+    font-size: 500%;
+    position: relative;
+    background-color: #564E4D;
+    color: white;
+  }
+
+  h2 {
+    color: #564E4D;
+  }
+
+  h3 {
+    margin-left: 75px;
+    margin-right: 75px;
+    color: #564E4D;
+  }
+  .brewery_information {
+    align: middle;
+    position: relative;
+    text-align:center;
+    background-color: white;
+  }
+
+  a{
+    font-size: 28px;
+    color: #564E4D;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  img.brewery_photo {
+      width: 50px;
+      border-radius:10%;
+      height: auto;
+      margin: 0 auto;
+      align: left;
+      position: relative;
+  }
+
+  .beer_list {
+    position: relative;
+    color: #564E4D;
+    /*top: 50%;*/
+    /*left: 50%;*/
+    /*margin-left: -175px;*/
+    margin-top: 75px;
+  }
+
+  .brewery_header {
+    font-size: 300%;
+    color: #564E4D;
+    position: relative;
+    margin: auto 0px;
+  }
+
+  hr {
+    border: 1px solid #564E4D;
+  }
+
+  .dropdown {
+  position: relative;
+  display: inline-block;
+  }
+
+  .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+  }
+
+  .dropdown:hover .dropdown-content {
+      display: block;
+  }
+
+  .dropdown {
+  position: relative;
+  display: inline-block;
+  }
+
+  .dropdown-content a {
+      color: #564E4D;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #564E4D;
+    color: white;
+  }
+
+  .dropdown:hover .dropdown-content {
+      display: block;
+  }
+
+  .dropdown:hover .dropbtn {
+      background-color: #3e8e41;
+  }
+
+  .beers_button {
+    background-color: #564E4D;
+    color: white;
+    padding: 16px;
+    font-size: 24px;
+    margin-top: 15px;
+  }
+</style>
+</html>

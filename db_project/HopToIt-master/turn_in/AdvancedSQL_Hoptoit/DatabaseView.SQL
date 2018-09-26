@@ -1,0 +1,6 @@
+CREATE VIEW Best AS(
+SELECT BREWERY.brewery_id, BEER.beer_id
+FROM BREWERY
+JOIN BEER ON BREWERY.brewery_id = BEER.beer_id);
+
+SELECT * FROM Best;
