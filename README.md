@@ -14,10 +14,10 @@ I chose this assignment because it was one of the key assignments in helping me 
 
 ## [Peg Solitaire](https://github.com/C-Moore21/SeniorPortfolio/tree/master/peg_solitare)
 
-I chose this assignment because it was an assignment which required critical thinking to not only solve the problem at hand but understand how the problem was orchestrated and how to represent it programmatically. It also deepened my understanding of recursive functions to solve problems.
+This assignment tasked us with programmtically solving the ever-so popular game of triangle peg solitare. I chose this assignment because it was an assignment which required critical thinking to not only solve the problem at hand but understand how the problem was orchestrated and how to represent it programmatically. It also deepened my understanding of recursive functions to solve problems. This assignment effectively addresses the college wide learning goal of critically thinking as well as the program wide learning goal of developing effective problem solving skills; as this project required tracking multiple changes to the pegs (as to reverse moves that did not work), as well as selecting the correct design of an algorithm to correctly solve the problem..
 
 ## [Database Project](https://github.com/C-Moore21/SeniorPortfolio/tree/master/db_project/HopToIt-master)
 
-I chose this project because in my time at Westminster College it is the defacto collaborative project work experience. Throughout the course of this project we worked together as a group of four collaboratively using a version control system to manage commits. In the end as a group we got 100% on the project and all felt successful as a group.
+For this project we were tasked as groups to create an application to showcase what we had learned from the database class. I chose this project because in my time at Westminster College it was the defacto collaborative project work experience. Throughout the course of this project we worked together as a group of four collaboratively using a version control system to manage commits. In the end as a group we got 100% on the project and all felt successful as a group. Thus, this project overwhelmingly satiesfied both the Westminster College, college-wide learning goal of collaboration and the program-wide goal of acquiring experience working in a group environment.
 
 
