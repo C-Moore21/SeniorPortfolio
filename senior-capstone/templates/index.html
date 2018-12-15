@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="styles" href="info-box.css">
+        <title>Utah Oil and Gas Leases</title>
+        <meta name="viewport" content="initial-scale=1.0">
+        <meta charset="utf-8">
+        <style>
+            p {
+                text-indent: 0.5em;
+            }
+        </style>
+        <style>
+            /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+            #map {
+                height: 100%;
+            }
+            body,
+            html {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            #floating-panel {
+                position: absolute;
+                top: 85%;
+                left: 5px;
+                background: rgba(0, 0, 0, 0.5);
+                padding: 0;
+                border: 1px solid #999;
+                text-align: center;
+                font-family: 'Roboto','sans-serif';
+                line-height: 1px;
+                padding-left: 5px;
+                padding-right: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="map"></div>
+        <div id="floating-panel">
+            <h3 align="left">
+                <font color="white">Information:</font>
+            </h3>
+            <p align="left">
+                <small>
+                    <font color="white">
+                        <a href="https://www.blm.gov/programs/planning-and-nepa/public-participation/filing-a-plan-protest" style="text-decoration: none; color:#ffffff;">How to file a plan protest</a>
+                    </font>
+                </small>
+            </p>
+            <p align="left">
+                <small>
+                    <font color="white">
+                        <a href="https://www.blm.gov/office/national-office" style="text-decoration: none; color:#ffffff;">BLM National Office Contact Information</a>
+                    </font>
+                </small>
+            </p>
+            <p align="left">
+                <small>
+                    <font color="white">
+                        <a href="https://www.blm.gov/office/west-desert-district-office" style="text-decoration: none; color:#ffffff;">BLM Utah Offices Contact Information</a>
+                    </font>
+                </small>
+            </p>
+            <p align="left">
+                <small>
+                    <i>
+                        <font color="white">Oil and Gas Lease data last updated: 11/26/2018</font>
+                    </i>
+                </small>
+            </p>
+
+        </div>
+
+        <div id="info-box"></div>
+        <script>
+            var map;
+            function initMap() {
+                var infowindow = new google.maps.InfoWindow();
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: {
+                        lat: 39.3210,
+                        lng: -111.0937
+                    },
+                    zoom: 8
+                });
+                map.data.setStyle(function (feature) {
+                    return {fillColor: getColor(), fillOpacity: 0.5, strokeWeight: 1}
+                });
+                var geourl = {{ data|safe }};
+                map.data.loadGeoJson(geourl);
+                map.data.addListener('click', function (event) {
+                    var feat = event.feature;
+                    var serial = feat.getProperty('SerialNrFull');
+                    var link_serial = serial.replace(/\s/g, "");
+                    var link_serial = link_serial.replace(/\D/g, "");
+                    if (feat.getProperty('EffDate') == null) {
+                        var EffDate = "Not Available";
+                    } else {
+                        var EffDate = feat.getProperty('EffDate');
+                    }
+                    if (feat.getProperty('ExpDate') == null) {
+                        var ExpDate = "Not Available";
+                    } else {
+                        var ExpDate = feat.getProperty('ExpDate');
+                    }
+                    var temp_link = "https://reports.blm.gov/report/LR2000/16/Pub-CR-Serial-Register-Page"
+                    var link = 'https://reports.blm.gov/xmlpserver/LR2K+Public/BIP+Reports/Pub+CR+SRP/2+New+Format+Serial+Entry/Pub+CR+SRP+New+Format+Serial+Entry.12.12.17.xdo?_paramsgeo_state=UT&_paramsland_office=-U+++&_paramssn_prefix=-&_paramsserial_no=+' +
+                            link_serial;
+                    var html = "<b> Case Serial Number: " + serial + "</b><br><b>Effective Date: " + EffDate + "</b><br> <b>Expiration Date: " + ExpDate + "</b>";
+                    html += "<br><a class='normal_link' target='_blank' onclick='copyToClipboard(" + serial + ")' href=\"" + temp_link + "\">Click for detailed report</a><br> <i>Please note: currently you must copy numbers <br> from the serial # and paste them in new serial <b" +
+                            "r> lookup page listing Utah as GeoState</i>";
+                    infowindow.setContent(html);
+                    infowindow.setPosition(event.latLng);
+                    infowindow.setOptions({
+                        pixelOffset: new google.maps.Size(0, -34)
+                    });
+                    infowindow.open(map);
+                });
+                //
+                // if (navigator.geolocation) {     navigator.geolocation.getCurrentPosition(function (position) {         var pos = {             lat: position.coords.latitude,             lng: position.coords.longitude         };
+                //
+                // infowindow.setPosition(pos);         infowindow.setContent('Location found.');         infowindow.open(map);         map.setCenter(pos);     }, function () {         handleLocationError(true, infowindow, map.getCenter());     }); } else { Browser
+                // doesn't support Geolocation     handleLocationError(false, infowindow, map.getCenter()); }
+            }
+        </script>
+        <script src="/static/getColor.js"></script>
+        <script src="/static/copyToClipboard.js"></script>
+        <script src="https://code.jquery.com/jquery.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjH7e0phKz1yi-1bFuHjA13V3wN_LNdL8&callback=initMap" async="async" defer="defer"></script>
+    </body>
+</html>
