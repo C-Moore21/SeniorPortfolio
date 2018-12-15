@@ -2,11 +2,11 @@
 
 ## [Chatroom](https://github.com/C-Moore21/SeniorPortfolio/tree/master/Chatroom)
 
-I chose this assignment because this was the first time I had not only created a protocol but used it on a low level. This assignment taught a lot about the techniques of software design on a protocol level and where you can easily go wrong. Working as a group split off into pairs helped show where we had gone wrong as a group creating the protocol because upon final testing in the course within our groups it became known that our implementations of the protocol did not always work as they should have due to minor differences which could have been ironed out in the protocol if it was designed better.
+This assignment tasked the students with creating a networking protocol, as well as using the protocol to create a chatroom. I chose this assignment because this was the first time I had not only created a protocol but used it on a low level. This assignment taught a lot about the techniques of software design on a protocol level and where you can easily go wrong. Working as a group split off into pairs helped show where we had gone wrong as a group creating the protocol because upon final testing in the course within our groups it became known that our implementations of the protocol did not always work as they should have due to minor differences which could have been ironed out in the protocol if it was designed better. This assignment I believed utilized many of the learning goals from both the college and the prorgam. Particulrally using collobariton effectively, and using creativity to design our protocol.
 
 ## [Webserver](https://github.com/C-Moore21/SeniorPortfolio/tree/master/webserver)
 
-I chose this assignment because it is one of the assignments that exemplified attaining a system-level understand of the computer. This assignment did this by teaching me HOW a webserver and a client interact with each other. This also taught me about how to multithread a server to handle multiple clients at a single time.
+This assignment required the students to 'write a partially functional web server' as well as optionally implementing caching and multithreading. I chose this assignment because it is one of the assignments that exemplified attaining a system-level understanding of the computer and how it interacts with a network. This assignment did this by teaching me HOW a webserver and a client interact with each other. This also taught me about how to multithread a server to handle multiple clients at a single time.
 
 ## [Sleeping TA](https://github.com/C-Moore21/SeniorPortfolio/tree/master/sleepingta/src)
 
