@@ -1,6 +1,6 @@
 # Senior Portfolio
 
-## Chatroom
+## [Chatroom](https://github.com/C-Moore21/SeniorPortfolio/tree/master/Chatroom)
 
 I chose this assignment because this was the first time I had not only created a protocol but used it on a low level. This assignment taught a lot about the techniques of software design on a protocol level and where you can easily go wrong. Working as a group split off into pairs helped show where we had gone wrong as a group creating the protocol because upon final testing in the course within our groups it became known that our implementations of the protocol did not always work as they should have due to minor differences which could have been ironed out in the protocol if it was designed better.
 
